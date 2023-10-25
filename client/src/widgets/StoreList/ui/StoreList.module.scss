@@ -1,0 +1,17 @@
+
+
+.root {
+	margin-top: 100px;
+	.title {
+		font-weight: 700;
+		font-size: 38px;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+	}
+	.containerCards {
+		display: flex;
+		flex-wrap: wrap;
+		
+	}
+}

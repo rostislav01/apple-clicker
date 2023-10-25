@@ -1,12 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from '../../../app/appStore'
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 
 type CounterSliceState = {
   perClick: number;
   perSecond: number;
   apples: number;
-  
+
 }
 
 const initialState: CounterSliceState = {
@@ -26,13 +25,16 @@ export const counterSlice = createSlice({
     // },
     addApplesOnClick: (state) => {
       state.apples += state.perClick;
-      console.log('dsds')
+    },
+    addBonus: (state, action: PayloadAction<number>) => {
+      state.apples - action.payload
+      
     }
   },
 })
 
 
 
-export const { addApplesOnClick } = counterSlice.actions
+export const { addApplesOnClick, addBonus } = counterSlice.actions
 
 export default counterSlice.reducer;
