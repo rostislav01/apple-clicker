@@ -10,6 +10,7 @@ type Props = {
 export function CounterSection(props: Props) {
   return (
     <section className={css.root}>
+     
      <div>
       {props.clicker}
      </div>

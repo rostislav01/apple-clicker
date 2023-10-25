@@ -4,9 +4,16 @@ import image from "./iphone.png";
 import css from "./StoreCard.module.scss";
 
 
+type Props = {
+	title: string;
+	cost: number;
+	bonus: "PER_SECOND" | "PER_CLICK";
+	bonusCount: number;	
+	count: number;
 
+}
 
-export function StoreCard() {
+export function StoreCard(props: Props) {
   return (
     <div className={css.card}>
       <div className={css.image}>
@@ -17,9 +24,9 @@ export function StoreCard() {
       </div>
 
       <div className={css.content}>
-        <span>Iphones: 0</span>
-        <span>iPhone cost: 10</span>
-        <span>+1 Apples per second</span>
+        <span>{props.title}s: {props.count}</span>
+        <span>{props.title} cost: 10</span>
+        <span>+{props.bonusCount} Apples {props.bonus ==="PER_CLICK" ? "per click" : "per second"  } </span>
       </div>
     </div>
   );
