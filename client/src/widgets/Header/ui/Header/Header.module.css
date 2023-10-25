@@ -1,0 +1,11 @@
+
+.root {
+	display: flex;
+	justify-content: center;
+	padding: 20px 0px;
+	.title {
+		font-size: 48px;
+		font-weight: 700;
+
+	}
+}

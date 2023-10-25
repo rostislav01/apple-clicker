@@ -1,0 +1,9 @@
+
+
+.button {
+	all: unset;
+	transition: 0.2s linear;
+	&:active {
+		transform: scale(1.2);
+	}
+}
