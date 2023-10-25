@@ -3,26 +3,22 @@ import { useAppDispatch, useAppSelector } from "../../../shared/model";
 import css from "./InfoCounter.module.scss";
 import { addApplesEverySecond } from "../../counter/model/slice";
 
-
+let render = 0;
 export function InfoCounter() {
-
-	const state = useAppSelector((state) => state.counter)
+  const state = useAppSelector(state => state.counter);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (state.perSecond > 0) {
+      const interval = setInterval(() => {
+        console.log("render", ++render);
 
-  
-    const interval = setInterval(() => {
-      if(state.perSecond > 0) {
-        dispatch(addApplesEverySecond())
-      }
-      
-    }, 1000);
+        dispatch(addApplesEverySecond());
+      }, 1000);
 
-    return () => clearInterval(interval);
-  }, []);
-
-
+      return () => clearInterval(interval);
+    }
+  }, [state.perSecond, state.apples]);
 
   return (
     <div className={css.root}>

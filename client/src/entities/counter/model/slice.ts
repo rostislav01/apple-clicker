@@ -15,7 +15,7 @@ type PayloadActionProps = {
 }
 const initialState: CounterSliceState = {
   perClick: 1,
-  perSecond: 1,
+  perSecond: 0,
   apples: 0
 }
 

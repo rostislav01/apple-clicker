@@ -20,7 +20,7 @@ export function StoreCard(props: Props) {
         <img src={image} alt="" />
       </div>
       <div className={css.button}>
-        <BuyBonusButton />
+        <BuyBonusButton type={props.bonus} price={props.cost} count={props.count} />
       </div>
 
       <div className={css.content}>

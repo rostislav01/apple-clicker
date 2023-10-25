@@ -4,7 +4,9 @@ import { addBonus } from "../../../entities/counter/model/slice";
 
 
 type Props = {
-
+	price: number;
+	count: number;
+	type: "PER_CLICK" | "PER_SECOND"
 }
 
 export function BuyBonusButton(props: Props) {
@@ -13,9 +15,9 @@ export function BuyBonusButton(props: Props) {
 	return (
 		<Button onClick={() => {
 			dispatch(addBonus({
-				price: 10,
-				count: 1,
-				type: "PER_CLICK"
+				price: props.price,
+				count: props.count,
+				type: props.type,
 			}))
 		}} sx={{width: "50%"}} variant="contained">Buy</Button>
 	)
