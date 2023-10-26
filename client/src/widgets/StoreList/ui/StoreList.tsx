@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../shared/model";
 import { initialStore } from "../../../entities/counter/model/slice";
 import iphone from "./iphone.png";
 import ipad from "./ipad.png";
-import pen from "./pen.jpg";
+import pen from "./pen.png";
 import airpods from "./airpods.png";
 import mac from "./mac.jpg";
 import imac from "./imac.png";
@@ -100,6 +100,7 @@ export function StoreList() {
       image: steve 
     },
   ];
+  
   useEffect(() => {
    return dataShop.forEach(item => dispatch(initialStore(item)))
   }, [])
