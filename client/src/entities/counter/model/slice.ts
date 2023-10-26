@@ -8,6 +8,7 @@ type StoreSliceState = {
 	type: "PER_SECOND" | "PER_CLICK";
 	bonusCount: number;	
 	quantity: number;
+  image: any;
 }
 
 type CounterSliceState = {
@@ -21,11 +22,6 @@ type CounterSliceState = {
 }
 
 
-type PayloadActionProps = {
-  type: string;
-  price: number
-  count: number
-}
 type PayloadActionBuy = {
 	id: number;
 	price: number;

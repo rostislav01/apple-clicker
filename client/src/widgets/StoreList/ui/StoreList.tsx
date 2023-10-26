@@ -3,6 +3,15 @@ import css from "./StoreList.module.scss";
 import { StoreCard } from "../../../entities/storeCard";
 import { useAppDispatch, useAppSelector } from "../../../shared/model";
 import { initialStore } from "../../../entities/counter/model/slice";
+import iphone from "./iphone.png";
+import ipad from "./ipad.png";
+import pen from "./pen.jpg";
+import airpods from "./airpods.png";
+import mac from "./mac.jpg";
+import imac from "./imac.png";
+import store from "./store.png";
+import steve from "./steve.jpg";
+
 
 type DataType = {
 	id: number;
@@ -11,6 +20,7 @@ type DataType = {
   quantity: number;
 	type: "PER_SECOND" | "PER_CLICK";
 	bonusCount: number;	
+  image: any;
 
 };
 export function StoreList() {
@@ -24,6 +34,7 @@ export function StoreList() {
       quantity: 0,
       type: "PER_SECOND",
       bonusCount: 1,
+      image: iphone   
     },
     {
       id: 1,
@@ -32,6 +43,7 @@ export function StoreList() {
       quantity: 0,
       type: "PER_CLICK",
       bonusCount: 1,
+      image: ipad 
     },
     {
       id: 2,
@@ -40,6 +52,7 @@ export function StoreList() {
       quantity: 0,
       type: "PER_SECOND",
       bonusCount: 100,
+      image: pen 
     },
     {
       id: 3,
@@ -48,6 +61,7 @@ export function StoreList() {
       quantity: 0,
       type: "PER_CLICK",
       bonusCount: 100,
+      image: airpods 
     },
     {
       id: 4,
@@ -56,6 +70,7 @@ export function StoreList() {
       quantity: 0,
       type: "PER_SECOND",
       bonusCount: 1000,
+      image: mac 
     },
     {
       id: 5,
@@ -64,6 +79,7 @@ export function StoreList() {
       quantity: 0,
       type: "PER_CLICK",
       bonusCount: 10.000,
+      image: imac 
     },
     {
       id: 6,
@@ -72,6 +88,7 @@ export function StoreList() {
       quantity: 0,
       type: "PER_SECOND",
       bonusCount: 100000,
+      image: store 
     },
     {
       id: 7,
@@ -80,6 +97,7 @@ export function StoreList() {
       quantity: 0,
       type: "PER_CLICK",
       bonusCount: 1000000,
+      image: steve 
     },
   ];
   useEffect(() => {
@@ -93,11 +111,11 @@ export function StoreList() {
   return (
     <section className={css.root}>
       <div className={css.title}>
-        <span>Store</span>
+        <span>SHOP</span>
       </div>
       <div className={css.containerCards}>
         {state?.storeItems.map((item, index) => (
-          <StoreCard  id={index} key={item.id} title={item.title} cost={item.cost} quantity={item.quantity} bonus={item.type} bonusCount={item.bonusCount} />
+          <StoreCard image={item.image}  id={index} key={item.id} title={item.title} cost={item.cost} quantity={item.quantity} bonus={item.type} bonusCount={item.bonusCount} />
         ))}
       </div>
     </section>

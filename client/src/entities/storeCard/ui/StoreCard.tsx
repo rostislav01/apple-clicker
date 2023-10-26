@@ -1,8 +1,6 @@
 import { ReactNode } from "react";
 import { BuyBonusButton } from "../../../feature/buyBonusButton";
-import image from "./iphone.png";
 import css from "./StoreCard.module.scss";
-import { useAppDispatch } from "../../../shared/model";
 
 
 type Props = {
@@ -12,6 +10,7 @@ type Props = {
 	bonus: "PER_SECOND" | "PER_CLICK";
 	bonusCount: number;	
 	quantity: number;
+  image: any;
 
 }
 
@@ -20,7 +19,7 @@ export function StoreCard(props: Props) {
   return (
     <div className={css.card}>
       <div className={css.image}>
-        <img src={image} alt="" />
+        <img src={props.image} alt="" />
       </div>
       <div className={css.button}>
         <BuyBonusButton id={props.id} type={props.bonus} price={props.cost} count={props.bonusCount} />
