@@ -9,7 +9,7 @@ export function InfoCounter() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (state.perSecond > 0) {
+    if (state.counter.perSecond > 0) {
       const interval = setInterval(() => {
         console.log("render", ++render);
 
@@ -18,16 +18,16 @@ export function InfoCounter() {
 
       return () => clearInterval(interval);
     }
-  }, [state.perSecond, state.apples]);
+  }, [state.counter.perSecond, state.counter.apples]);
 
   return (
     <div className={css.root}>
       <div className={css.count}>
-        <span>Apples = {state.apples}</span>
+        <span>Apples = {state.counter.apples}</span>
       </div>
       <div className={css.info}>
-        <span>Apples per second = {state.perSecond}</span>
-        <span>Apples per click = {state.perClick}</span>
+        <span>Apples per second = {state.counter.perSecond}</span>
+        <span>Apples per click = {state.counter.perClick}</span>
       </div>
     </div>
   );

@@ -1,22 +1,45 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 
-type CounterSliceState = {
-  perClick: number;
-  perSecond: number;
-  apples: number;
-
+type StoreSliceState = {
+	id: number;
+	title: string;
+	cost: number;
+	type: "PER_SECOND" | "PER_CLICK";
+	bonusCount: number;	
+	quantity: number;
 }
+
+type CounterSliceState = {
+
+  counter: {
+    perClick: number;
+    perSecond: number;
+    apples: number;
+  },
+  storeItems: StoreSliceState[]
+}
+
 
 type PayloadActionProps = {
   type: string;
   price: number
   count: number
 }
+type PayloadActionBuy = {
+	id: number;
+	price: number;
+  type: "PER_SECOND" | "PER_CLICK";
+  count: number
+}
 const initialState: CounterSliceState = {
-  perClick: 1,
-  perSecond: 0,
-  apples: 0
+
+  counter: {
+    perClick: 1,
+    perSecond: 0,
+    apples: 0
+  },
+  storeItems: []
 }
 
 
@@ -25,31 +48,35 @@ export const counterSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
-    // changeTheme: (state, action: PayloadAction<Theme>) => {
-    //   state.currentTheme = action.payload
-    // },
     addApplesOnClick: (state) => {
-      state.apples += state.perClick;
+      state.counter.apples += state.counter.perClick;
     },
     addApplesEverySecond: (state) => {
-      state.apples += state.perSecond;
+      state.counter.apples += state.counter.perSecond;
     },
-    addBonus: (state, action: PayloadAction<PayloadActionProps>) => {
-      const { price, type, count } = action.payload;
-      if (state.apples >= price) {
-        state.apples -= price;
-        type === "PER_SECOND" ? (state.perSecond += count) : (state.perClick += count);
-      } else {
-        alert("Error");
-      }
-    
-      
+    initialStore: (state, action: PayloadAction<StoreSliceState>) => {
+			state.storeItems = state.storeItems.concat(action.payload)
+    },
+    buyBonus: (state, action: PayloadAction<PayloadActionBuy>) => {
+      state.storeItems.forEach((item) => {
+				if(item.id === action.payload.id) {
+          if(action.payload.price > state.counter.apples) return alert("нет бабла") 
+          state.counter.apples -= action.payload.price;
+          if(action.payload.type === "PER_SECOND") {
+            state.counter.perSecond += action.payload.count
+          } else {
+            state.counter.perClick += action.payload.count
+          }
+					item.cost *= 2;
+					item.quantity += 1;
+				} 
+			})
     }
   },
 })
 
 
 
-export const { addApplesOnClick, addBonus, addApplesEverySecond } = counterSlice.actions
+export const { addApplesOnClick, initialStore, addApplesEverySecond, buyBonus } = counterSlice.actions
 
 export default counterSlice.reducer;
