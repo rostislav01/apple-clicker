@@ -18,7 +18,7 @@ export function InfoCounter() {
 
       return () => clearInterval(interval);
     }
-  }, [state.counter.perSecond, state.counter.apples]);
+  }, [state.counter.perSecond]);
 
   return (
     <div className={css.root}>
