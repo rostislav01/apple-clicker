@@ -1,4 +1,5 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify';
 
 
 type StoreSliceState = {
@@ -56,7 +57,7 @@ export const counterSlice = createSlice({
     buyBonus: (state, action: PayloadAction<PayloadActionBuy>) => {
       state.storeItems.forEach((item) => {
 				if(item.id === action.payload.id) {
-          if(action.payload.price > state.counter.apples) return alert("нет бабла") 
+          if(action.payload.price > state.counter.apples) return toast.error("Не хватает Apple-Coins"); 
           state.counter.apples -= action.payload.price;
           if(action.payload.type === "PER_SECOND") {
             state.counter.perSecond += action.payload.count
@@ -65,6 +66,7 @@ export const counterSlice = createSlice({
           }
 					item.cost *= 2;
 					item.quantity += 1;
+          toast.success("Бонус куплен")
 				} 
 			})
     }
